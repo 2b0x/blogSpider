@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>首页</title>
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+		<link rel="stylesheet" type="text/css" href="css/base.css"/>
+		<link rel="stylesheet" type="text/css" href="css/layui.css"/>
+		
+	</head>
+	
+	
+	
+	
+	
+	
+	<body>
+		<div class="body">
+			<div class="header">
+				<div class="navbg">
+					<div class="nav center">
+						<ul class="layui-nav dplayinlineB" lay-filter="">
+							<li class="layui-nav-item"><a href="###">Java</a></li>
+							<li class="layui-nav-item layui-this"><a href="index.html" target="_blank">Web</a></li>
+							<li class="layui-nav-item"><a href="###">Android</a></li>
+							<li class="layui-nav-item"><a href="###">PHP</a></li>
+							<li class="layui-nav-item"><a href="###">JavaScript</a></li>
+							<li class="layui-nav-item"><a href="###">算法分析</a></li>
+						</ul>
+						
+						<div class="search dplayinlineB">
+								<a href="###" class="dplayinlineB"><i class="layui-icon">&#xe615;</i></a>
+						    	<input type="text" name="title" required  lay-verify="required" autocomplete="off" class="layui-input dplayinlineB">
+						</div>
+						<div class="layui-clear"></div>
+						
+					</div>				
+				</div>
+				<div class="slide center">
+					<div class="layui-carousel" id="slider">
+					  	<div carousel-item="">
+						    <div><div class="img"></div></div>
+						    <div><div class="img"></div></div>
+						    <!--<div><div class="img"></div></div>-->
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			
+			<div class="layui-clear"></div>
+			
+			<div class="main">
+				<div class="main-top">
+						<span class="blog-name">RoyRocco的博客</span>
+						<a href="###">
+								<i class="layui-icon">&#xe65c;</i>退出登录
+						</a>
+						<a href="###">
+								<i class="layui-icon">&#xe642;</i>修改个人信息
+						</a>
+				</div>
+				<div class="main-body">
+					<div class="main-left">
+						<ul>
+							<li class="blog-unit">
+								<h3 class="blog-title"><a href="">随便想一个标题来填充吧</a></h3>
+								<p class="text">一般上传图片到服务器有两种方式：1、把图片转换成二进制直接存储到数据库里2、把图片存储到本地目录，并将图片地址存储到数据库里先粗浅地谈下我对这两种存储方法的优劣点的认识：1、把图片转换成二</p>
+								<div class="unit-contorl">
+									<span>分类：</span><span>Java</span>
+									<span class="time">2017-12-31 14:49:59</span>
+									<span class="unit-con-right">
+										<a href="###">收藏</a>
+										<a href="###">查看</a>
+									</span>
+									
+								</div>
+							</li>
+						</ul>
+						
+						<div class="page">
+							<div id="page"></div>
+						</div>
+						
+					</div>
+					
+					<div class="main-right">
+						<!--收藏 关注 笔记-->
+						<div class="user-info">
+							<dl class="info-bar">
+								<dt class="info-pic"><img src="img/4.jpg" alt="" /></dt>
+								<dd class="info-name"><p>RoyRocco</p></dd>
+							</dl>
+							<div class="info-number">
+								<a href="###" class="my-index">个人主页</a>
+								
+								<dl>
+									<dt>关注</dt><dd>28</dd>
+								</dl>
+								<dl>
+									<dt>收藏</dt><dd>218</dd>
+								</dl>
+								<dl>
+									<dt>笔记</dt><dd>8</dd>
+								</dl>
+
+							</div>
+						</div>
+					
+						<div class="hot">
+							<p>热点推荐</p>
+							<ul>
+								<li><a href="">这是标题这是标题这是标题这是标题这是标题这是标题</a></li>
+								<li><a href="">这是标题</a></li>
+								<li><a href="">这是标题</a></li>
+								<li><a href="">这是标题</a></li>
+							</ul>
+						</div>
+					
+						<div class="inter">
+							<p>兴趣推荐</p>
+							<ul>
+								<li><a href="">这是标题这是标题这是标题这是标题这是标题这是标题</a></li>
+								<li><a href="">这是标题</a></li>
+								<li><a href="">这是标题</a></li>
+								<li><a href="">这是标题</a></li>
+							</ul>
+						</div>
+					
+					</div>
+				</div>
+			</div>
+				
+				
+			
+			
+			<div class="footer"></div>
+		</div>
+		
+		
+	
+	</body>
+	<script src="js/jquery-3.0.0.min.js" charset="utf-8"></script>
+	<script src="js/layui.js" charset="utf-8"></script>
+	<script>
+	layui.use('element', function(){
+	  var element = layui.element;
+	});
+	layui.use('carousel', function(){
+	  var carousel = layui.carousel;
+	  //建造实例
+	  carousel.render({
+	    elem: '#slider'
+	    ,width: '100%' 
+	    ,height: '500px'
+	    ,anim: 'fade'
+	    ,arrow: 'hover'
+	    ,autoplay:'!true'
+	    ,indicator: 'none'
+	  });
+	});
+	layui.use('laypage', function(){
+	  var laypage = layui.laypage;
+	  
+	  //执行一个laypage实例
+	  laypage.render({
+	    elem: 'page' //注意，这里的 test1 是 ID，不用加 # 号
+	    ,count: 500 //数据总数，从服务端得到
+	  });
+	});
+	
+	
+	var imgPath=['img/5.jpg','img/6.jpg'];
+	var img=$('#slider .img');
+	for(var i=0;i<img.length;i++){
+		img[i].style.backgroundImage='url('+imgPath[i]+')';
+	}
+	
+	var da = $('.main-left ul').html();
+	for(var i=0;i<8;i++){
+		$('.main-left ul').append(da);
+	}
+	
+	
+	</script>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>登录</title>
+		<link rel="stylesheet" type="text/css" href="css/logandreg.css" />
+		<link rel="stylesheet" type="text/css" href="css/layui.css"/>
+	</head>
+
+	<body>
+		<div class="box">
+			<div class="left">
+				<div class="bggreen"></div>
+				<div style="width: 220px;margin-bottom: 10px;"></div>
+				<div class="bgwhite hl2" style="width: 340px;"></div>
+				<div class="bgwhite hl2" style="width: 290px;"></div>
+				<div class="bgwhite hl2" style="width: 310px;"></div>
+				<div class="bgwhite hl2" style="width: 220px;margin-bottom: 35px;"></div>
+				
+				<div class="bggreen hl1" style="width: 140px;margin-bottom: 20px;"></div>
+				<div class="bghui hl2" style="margin-bottom: 10px;width: 90px;"></div>
+				<div class="bgwhite marl hl2" style="width: 100px;"></div>
+				<div class="bgwhite marl hl2" style="width: 180px;"></div>
+				<div class="bgwhite marl hl2" style="width: 140px;margin-bottom: 20px;"></div>
+				
+				<div class="bghui hl2" style="width: 175px;margin-bottom: 10px;"></div>
+				<div class="bgwhite marl hl2" style="width: 50px;"></div>
+				<div class="bgwhite marl hl2" style="width: 60px;"></div>
+				<div class="bgwhite marl hl2" style="width: 120px;"></div>
+				<div class="bgwhite marl hl2" style="width: 90px;margin-bottom: 20px;"></div>
+				
+				<div class="bghui hl2" style="width: 175px;"></div>
+				<div class="bgwhite marl hl2" style="width: 80px;"></div>
+				<div class="bgwhite marl hl2" style="width: 80px;"></div>
+				<div class="bgwhite marl hl2" style="width: 65px;margin-bottom: 20px;"></div>
+				
+				<div class="bggreen hl1" style="width: 140px;"></div>
+				<div class="bgwhite marl hl2" style="width: 180px;"></div>
+			</div>
+			
+			<div class="right">
+				<form action="" method="post" class="layui-form">
+					<dd class="pic">
+						<div class="img" id="img"></div>
+						<a href="javascript:;" class="a-upload">
+					    	<input type="file" name="photo" id="" title="文件不超过200kb,大小最佳为60*60" onchange="imgPreview(this)">上传头像
+						</a>
+					</dd>
+					<span class="nickname"><input type="text" id="" value="" placeholder="请输入昵称"/></span>
+					    <div class="layui-input-block">
+					    	<input type="radio" name="sex" value="男" title="男" checked>
+					    	<input type="radio" name="sex" value="女" title="女" >
+					    </div>
+				</form>
+			</div>
+		</div>
+
+
+
+
+
+		
+	</body>
+	<script src="js/jquery-3.0.0.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/layui.js" type="text/javascript"></script>
+	<script>
+		layui.use('form', function(){
+	  		var form = layui.form;
+		});
+		
+		function imgPreview(fileDom){
+	        //判断是否支持FileReader
+	        if (window.FileReader) {
+	            var reader = new FileReader();
+	        } else {
+	            alert("您的设备不支持图片预览功能，如需该功能请升级您的设备！");
+	        }
+	
+	        //获取文件
+	        var file = fileDom.files[0];
+	        var imageType = /^image\//;
+	        //是否是图片
+	        if (!imageType.test(file.type)) {
+	            alert("请选择图片！");
+	            return;
+	        }
+	        //读取完成
+	        reader.onload = function(e) {
+	            //获取图片dom
+//	            var img = document.getElementById("preview");
+	            var imgs = document.getElementById("img");
+	            
+	            //图片路径设置为读取的图片
+//	            img.src = e.target.result;
+	            imgs.style.backgroundImage="url("+e.target.result+")";
+	        };
+	        reader.readAsDataURL(file);
+	    }
+		
+	</script>
+</html>
