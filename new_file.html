@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<link rel="stylesheet" type="text/css" href="css/layui.css"/>
+		<link rel="stylesheet" type="text/css" href="layui/css/layui.css"/>
 		<title></title>
 	</head>
 	<body>
@@ -36,9 +36,9 @@
   <div class="layui-form-item">
     <label class="layui-form-label">复选框</label>
     <div class="layui-input-block">
-      <input type="checkbox" name="like[write]" title="写作">
-      <input type="checkbox" name="like[read]" title="阅读" checked>
-      <input type="checkbox" name="like[dai]" title="发呆">
+      <input type="checkbox" name="like[write]" value="1" title="写作" lay-filter="all">
+      <input type="checkbox" name="like[read]" value="2" title="阅读" checked lay-filter="all">
+      <input type="checkbox" name="like[dai]" value="3" title="发呆" lay-filter="all">
     </div>
   </div>
   <div class="layui-form-item">
@@ -69,17 +69,27 @@
 </form>
  
  <script src="js/jquery-3.0.0.min.js" type="text/javascript" charset="utf-8"></script>
- <script src="js/layui.js" type="text/javascript" charset="utf-8"></script>
+ <script src="layui/layui.js" type="text/javascript" charset="utf-8"></script>
 <script>
 //Demo
 layui.use('form', function(){
-  var form = layui.form;
-  
-  //监听提交
-  form.on('submit(formDemo)', function(data){
-    layer.msg(JSON.stringify(data.field));
-    return false;
-  });
+	  var form = layui.form;
+	  
+	  //监听提交
+	  form.on('submit(formDemo)', function(data){
+	    layer.msg(JSON.stringify(data.field));
+	    return false;
+	  });
+	  
+	  form.on('checkbox(all)', function(data){
+	  console.log(data.elem); //得到checkbox原始DOM对象
+	  console.log(data.elem.checked); //是否被选中，true或者false
+	  console.log(data.value); //复选框value值，也可以通过data.elem.value得到
+	  console.log(data.othis); //得到美化后的DOM对象
+	  form.render();
+	});  
+	
+	form.render();
 });
 </script>
 	</body>

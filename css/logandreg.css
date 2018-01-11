@@ -10,6 +10,9 @@ body { width: 100%; height:100%; font-family: 'Open Sans', sans-serif; backgroun
 span{
 	cursor: default;
 }
+form{
+    padding-bottom: 40px !important;
+}
 .box{
 
     width: 800px;
@@ -56,12 +59,16 @@ span{
 
 /*登录*/
 .right{
-	padding: 0 40px;
+	/*padding: 0 40px;*/
+	overflow: hidden;
 	margin: 0;
 	display: inline-block;
     height: 600px;
-    width: 310px;
+    width: 390px;
 	background-color: rgba(67, 70, 75,1);
+}
+.rbox{
+	padding: 0 40px;
 }
 .start{
 	
@@ -88,8 +95,8 @@ span{
     top: 13px;
     margin-right: 20px;
 }
-.username{background-image: url(../img/username.png);}
-.password{background-image: url(../img/password.png);}
+.logUsername{background-image: url(../img/username.png);}
+.logPassword{background-image: url(../img/password.png);}
 .right p input{
     display: inline-block;
     margin: 0;
@@ -156,6 +163,18 @@ span{
 
 
 /*注册*/
+.layui-form{
+	color: white;
+    padding-left: 10px;
+}
+.formInput{
+	padding: 0 10px;
+    display: inline-block;
+    background-color: rgba(0,0,0,0);
+    border: none;
+    color: white;
+    font-size: 16px;
+}
 dd.pic{
     margin: 0;
     overflow: visible;
@@ -218,23 +237,67 @@ dd.pic{
     width: 70px;
 
 }
-
-.nickname{
-	margin-left: 20px;
-    padding-bottom: 5px;
+.inputBox{
+	padding-bottom: 5px;
     display: inline-block;
     border-bottom: 1px solid #fff;
+}
+.nickname{
+	margin-left: 20px;
+    /*padding-bottom: 5px;
+    display: inline-block;
+    border-bottom: 1px solid #fff;*/
     margin-left: 20px;
-    margin-top: 55px;
+    margin-top: 65px;
 }
 .nickname input{
-    border: none;
-    color: white;
     margin-top: 5px;
-    font-size: 16px;
-    background-color: rgba(0,0,0,0);
     top: 0;
-    width: 180px;
-    padding-left: 10px;
-    padding-right: 10px;
+    width: 170px;
+}
+.fenlei{
+    margin-top: 25px;
+    margin-bottom: 5px;
+    display: inline-block;
+    font-size: 16px;
+}
+.layui-input-block{
+	margin-top: 20px;
+}
+.layui-form-checkbox[lay-skin=primary]{
+	margin: 5px 0;
+}
+#fenlei .layui-form-checkbox[lay-skin=primary] span{
+	color: white;
+}
+.inputBase{
+	width: 300px;
+    margin-top: 25px;
+}
+.email input{
+	width: 260px;
+}
+textarea{
+	width: 280px;
+	height: 100px;
+	background-color: rgba(0,0,0,0);
+	margin-top: 20px !important;
+	font-size: 15px;
+	padding: 5px 10px !important;
+	resize: none;
+	color: white;
+	border-color: white;
+}
+.setting{
+	margin-top: 25px;
+    display: inline-block;
+    font-size: 16px;
+}
+.hid{
+	
+    height: 600px;
+    overflow: auto;
+    width: 370px;
+    padding-left: 40px;
+
 }

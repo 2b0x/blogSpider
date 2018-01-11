@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="renderer" content="webkit">
+		<link rel="stylesheet" type="text/css" href="layui/css/layui.css"/>
+		<link rel="stylesheet" href="css/myhome.css"/>
+		
+	  	<style>
+	  		
+	  	</style>
+	  	
+		<title>我的主页</title>
+	</head>
+	<body>
+		<div class="body">
+			<div class="header-bg">
+				<div class="header">
+					<div class="logo">
+						<span>大学生考研在线管理平台</span>
+					</div>	
+				</div>
+			</div>
+			<div class="main">
+				<div class="slideNav">
+					<ul class="layui-nav layui-nav-tree" lay-filter="test">
+					<!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
+						<span class="userBox">
+							<dd class="userPic"></dd>
+							<span class="userName">RoyRocco</span>
+						</span>
+						<li class="layui-nav-item layui-nav-itemed">
+						    <a href="javascript:;">我的关注</a>
+						    <dl class="layui-nav-child">
+						      <dd class="layui-this"><a href="javascript:;" class="slide">Java</a></dd>
+						      <dd><a href="javascript:;" class="slide">Web</a></dd>
+						    </dl>
+						</li>
+						<li class="layui-nav-item"><dd><a href="javascript:;">我的收藏</a></dd></li>
+						<li class="layui-nav-item"><dd><a href="javascript:;" class="slide">个人信息</a></dd></li>
+						<li class="layui-nav-item"><dd><a href="javascript:;" class="slide">我的笔记</a></dd></li>
+						<li class="layui-nav-item"><dd><a href="javascript:;" class="slide">退出登录</a></dd></li>
+					</ul>
+				</div>
+				
+				
+				<div class="main-body" id="mainBody">
+					<ul class="article-list">
+						<li class="layui-clear">
+							<div class="list-con">
+								<h2><a href="">不知道要填些什么，随便写写假装有标题得了</a></h2>
+								<dl class="list-bar">
+									<dd><span>来源：</span><span>CSDN</span></dd>
+									<dd>2018-01-12 01:27</dd>
+								</dl>
+							</div>
+						</li>
+					
+						<li class="layui-clear">
+							<div class="list-con">
+								<h2><a href="">不知道要填些什么，随便写写假装有标题得了</a></h2>
+								<dl class="list-bar">
+									<dd><span>来源：</span><span>CSDN</span></dd>
+									<dd>2018-01-12 01:27</dd>
+								</dl>
+							</div>
+						</li>
+					
+					</ul>
+					
+				</div>
+			</div>
+		</div>
+		
+		<script src="js/jquery-3.0.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layui/layui.js" type="text/javascript" charset="utf-8"></script>	  	
+		<script>
+			layui.use('element', function() {
+				var element = layui.element;
+			});
+		</script>
+		
+		
+	</body>
+</html>

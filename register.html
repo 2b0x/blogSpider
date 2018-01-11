@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
 		<title>登录</title>
 		<link rel="stylesheet" type="text/css" href="css/logandreg.css" />
-		<link rel="stylesheet" type="text/css" href="css/layui.css"/>
+		<link rel="stylesheet" type="text/css" href="layui/css/layui.css"/>
 	</head>
 
 	<body>
@@ -39,19 +39,42 @@
 			</div>
 			
 			<div class="right">
-				<form action="" method="post" class="layui-form">
-					<dd class="pic">
-						<div class="img" id="img"></div>
-						<a href="javascript:;" class="a-upload">
-					    	<input type="file" name="photo" id="" title="文件不超过200kb,大小最佳为60*60" onchange="imgPreview(this)">上传头像
-						</a>
-					</dd>
-					<span class="nickname"><input type="text" id="" value="" placeholder="请输入昵称"/></span>
-					    <div class="layui-input-block">
-					    	<input type="radio" name="sex" value="男" title="男" checked>
-					    	<input type="radio" name="sex" value="女" title="女" >
+				<div class="hid">
+					
+				
+				
+				
+					<form action="" method="post" class="layui-form">
+						<dd class="pic">
+							<div class="img" id="img"></div>
+							<a href="javascript:;" class="a-upload">
+						    	<input type="file" name="photo" id="" title="文件不超过200kb,大小最佳为60*60" onchange="imgPreview(this)">上传头像
+							</a>
+						</dd>
+						<span class="inputBox nickname"><input type="text" id="" value="" placeholder="请输入昵称" class="formInput"/></span>
+						<div class="layui-input-block">
+						    <input type="radio" name="sex" value="男" title="男" checked>
+						    <input type="radio" name="sex" value="女" title="女" >
+						</div>
+						<div class="layui-clear"></div>
+						<span class="fenlei">关注分类：</span>
+						<div id="fenlei" class="">
+					      	<input type="checkbox" name="like[write]" value="1" title="Java" lay-skin="primary">
+					      	<input type="checkbox" name="like[read]" value="2" title="Web" checked lay-skin="primary">
+					      	<input type="checkbox" name="like[dai]" value="3" title="安卓" lay-skin="primary">
+					      	<input type="checkbox" name="like[write]" value="1" title="PHP" lay-skin="primary">
+					      	<input type="checkbox" name="like[read]" value="2" title="JavaScript" checked lay-skin="primary">
+					      	<input type="checkbox" name="like[dai]" value="3" title="算法分析" lay-skin="primary">
 					    </div>
-				</form>
+					    <span class="inputBox inputBase email"><input type="email" value="" placeholder="请输入联系邮箱" class="formInput"/></span>
+					    <textarea class="inputBox" name="" rows="" cols="" placeholder="请输入个人简介(限五十字内)"></textarea>
+					    <span class="setting">设置帐号信息:</span>
+					    <span class="inputBox inputBase regUserName"><input type="text" value="" placeholder="请输入帐号" class="formInput"/></span>
+					    <span class="inputBox inputBase regPassword"><input type="password" value="" placeholder="请输入密码" class="formInput"/></span>
+					    <span class="inputBox inputBase regPassword"><input type="password" value="" placeholder="请确认密码" class="formInput"/></span>
+						<input class="form-btn login inputBase" type="button" name="" id="" value="登 录" />
+					</form>
+				</div>	
 			</div>
 		</div>
 
@@ -62,10 +85,19 @@
 		
 	</body>
 	<script src="js/jquery-3.0.0.min.js" type="text/javascript" charset="utf-8"></script>
-	<script src="js/layui.js" type="text/javascript"></script>
+	<script src="layui/layui.js" type="text/javascript" charset="utf-8"></script>
 	<script>
 		layui.use('form', function(){
 	  		var form = layui.form;
+		
+		
+		form.on('checkbox(filter)', function(data){
+  console.log(data.elem); //得到checkbox原始DOM对象
+  console.log(data.elem.checked); //是否被选中，true或者false
+  console.log(data.value); //复选框value值，也可以通过data.elem.value得到
+  console.log(data.othis); //得到美化后的DOM对象
+});  
+		
 		});
 		
 		function imgPreview(fileDom){

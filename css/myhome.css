@@ -1,0 +1,108 @@
+body{
+	width: 100%;
+	height: 100%;
+}
+html{
+	width: 100%;
+	height: 100%;
+}
+.body{
+	height: 100%;
+	width: 100%;
+	min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.header-bg{
+	background-color: rgb(57, 61, 73);
+    border-bottom: 5px solid #009688;
+}
+.header{
+	height: 60px;
+	line-height: 60px;	
+}
+.logo{
+	display: inline-block;
+	margin-left: 50px;
+}
+.logo span{
+	font-size: 26px;
+	color: rgba(255, 255, 255, 1);
+}
+.main{
+	display: flex;
+    flex-grow: 1;
+}
+.slideNav{
+	width: 200px;
+	background-color: #393D49;
+}
+.main-body{
+	width: 100%;
+	flex-grow: 1;
+	overflow-y: auto;
+    padding: 20px 30px;
+}
+.userBox{
+    display: inline-block;
+    margin: 10px 0 0;
+    padding-bottom: 5px;
+    width: 185px;
+    padding-left: 15px;
+    text-align: center;
+}
+.userPic{
+	float: left;
+    width: 60px;
+    height: 60px;
+    background-image: url(../img/4.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 50%;
+    display: inline-block;
+}
+.userName{
+    font-size: 16px;
+    width: 115px;
+    margin-left: 7px;
+    display: inline-block;
+    margin-top: 15px;
+}
+
+
+.article-list li{
+	padding: 22px 24px;
+    background: #fff;
+    border-bottom: 1px solid #f4f4f4;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.05);
+    position: relative;
+}
+.article-list li:hover{
+	background-color: #FAFAFA;
+}
+.list-con h2{
+	font-size: 20px;
+    color: #333;
+    font-weight: bold;
+    line-height: 24px;
+    height: 24px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 11px;
+}
+.list-con h2 a:hover{
+	color: #ca0c16;
+}
+.list-bar{
+	    display: flex;
+    align-items: center;
+    height: 24px;
+    line-height: 24px;
+}
+.list-bar dd{
+	    float: left;
+    font-size: 13px;
+    color: #999;
+    margin: 0 24px 0 0;
+}
