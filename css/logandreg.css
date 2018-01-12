@@ -163,6 +163,12 @@ form{
 
 
 /*注册*/
+.title{
+    margin-top: 50px;
+    font-size: 22px;
+    margin-left: 38px;
+    display: inline-block;
+}
 .layui-form{
 	color: white;
     padding-left: 10px;
@@ -243,12 +249,8 @@ dd.pic{
     border-bottom: 1px solid #fff;
 }
 .nickname{
-	margin-left: 20px;
-    /*padding-bottom: 5px;
-    display: inline-block;
-    border-bottom: 1px solid #fff;*/
     margin-left: 20px;
-    margin-top: 65px;
+    margin-top: 30px;
 }
 .nickname input{
     margin-top: 5px;

@@ -137,6 +137,7 @@
 }
 .blog-title{
 	font-size: 20px;
+	font-weight: 800;
 	color: #4f4f4f;
 	margin-bottom: 8px;
 	overflow: hidden;
@@ -163,8 +164,11 @@
 	font-size: 14px;
 	color: #999;
 }
-.time{
-	margin-left: 24px;
+#from{
+	margin-right: 24px;
+}
+#class{
+	margin-right: 24px;
 }
 .blog-unit:hover .unit-con-right{
 	display: block;
