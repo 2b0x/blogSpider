@@ -231,3 +231,21 @@ dt{
 #chartRight{
 	display: inline-block;
 }
+.updateInfo{
+    display: inline-block;
+    color: black;
+    text-align: center;
+    line-height: 30px;
+    margin: 40px 0;
+    padding: 7px 30px;
+    font-size: 18px;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: rgba(0,0,0,0);
+    transition: background-color .2s;
+}
+.updateInfo:hover{
+	    background-color: #d12d2d;
+    color: #fff;
+    border-color: rgba(0,0,0,0);
+}

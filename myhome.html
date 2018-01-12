@@ -1,179 +1,106 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="renderer" content="webkit">
-		<link rel="stylesheet" type="text/css" href="layui/css/layui.css"/>
-		<link rel="stylesheet" href="css/myhome.css"/>
-		
-	  	<style>
-	  		
-	  	</style>
-	  	
+		<link rel="stylesheet" type="text/css" href="layui/css/layui.css" />
+		<link rel="stylesheet" href="css/myhome.css" />
+
+		<style>
+
+		</style>
+
 		<title>我的主页</title>
 	</head>
+
 	<body>
 		<div class="body">
 			<div class="header-bg">
 				<div class="header">
 					<div class="logo">
 						<span>大学生考研在线管理平台</span>
-					</div>	
-				</div>
-			</div>
-			<div class="main">
-				<div class="slideNav">
-					<ul class="layui-nav layui-nav-tree" lay-filter="test">
-					<!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
-						<span class="userBox">
-							<dd class="userPic"></dd>
-							<span class="userName">RoyRocco</span>
-						</span>
-						<li class="layui-nav-item layui-nav-itemed">
-						    <a href="javascript:;">我的关注</a>
-						    <dl class="layui-nav-child">
-						      <dd class="layui-this"><a href="javascript:;" class="slide">Java</a></dd>
-						      <dd><a href="javascript:;" class="slide">Web</a></dd>
-						    </dl>
-						</li>
-						<li class="layui-nav-item"><dd><a href="javascript:;">我的收藏</a></dd></li>
-						<li class="layui-nav-item"><dd><a href="javascript:;" class="slide">个人信息</a></dd></li>
-						<!--<li class="layui-nav-item"><dd><a href="javascript:;" class="slide">我的笔记</a></dd></li>-->
-						<li class="layui-nav-item"><dd><a href="javascript:;" class="slide">退出登录</a></dd></li>
-					</ul>
-				</div>
-				
-				
-				<div class="main-body" id="mainBody">
-					<div class="myInfo">
-						<div class="myInfoLeft">
-							<dl>
-								<dt><label for="">昵称：</label></dt>
-								<dd><input type="text" class="info-input" value="RoyRocco" disabled="disabled"/></dd>
-							</dl>
-							<dl>
-								<dt><label for="">帐号：</label></dt>
-								<dd><input type="text" class="info-input" value="132456789" disabled="disabled"/></dd>
-							</dl>
-							<dl>
-								<dt><label for="">邮箱：</label></dt>
-								<dd><input type="text" class="info-input" value="123456@163.com" disabled="disabled"/></dd>
-							</dl>
-							<dl>
-								<dt><label for="">简介：</label></dt>
-								<dd><textarea class="info-input" name="" rows="" cols="" value="" disabled="disabled">123456789</textarea></dd>
-							</dl>
-							<dl>
-								<dt>关注分类：</dt>
-								<dd>
-									<span>Java</span>
-									<span>Web</span>
-									<span>PHP</span>
-								</dd>
-							</dl>
-							<dl>
-								<dt>收藏：</dt>
-								<dd><span>123条</span></dd>
-							</dl>
-						</div>
-						<div class="myInfoRight">
-							<dl>
-								<dt><span>个人头像：</span></dt>
-								<dd><span class="infoPic"></span></dd>
-							</dl>
-							
-							<dl>
-								<dt>注册时间：</dt>
-								<dd><span>2018-08-08</span></dd>
-							</dl>
-						</div>
-						<div class="layui-clear"></div>
-						<div class="chart">
-							<div id="chartLeft" style="width: 400px; height: 300px;"></div>
-							<div id="chartRight" style="width: 400px; height: 300px;"></div>
-						</div>
-						
 					</div>
 				</div>
 			</div>
+			<div class="main">
+				<div class="slideNav" id="slideNav">
+					<ul class="layui-nav layui-nav-tree" lay-filter="test">
+						<!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
+						<span class="userBox">
+							<span class="userPic"></span>
+							<span class="userName">RoyRocco</span>
+						</span>
+						<li class="layui-nav-item layui-nav-itemed">
+							<a href="javascript:;">我的关注</a>
+							<dl class="layui-nav-child">
+								<dd>
+									<a href="javascript:;" class="slide" data-type="1">Java</a>
+								</dd>
+								<dd>
+									<a href="javascript:;" class="slide" data-type="1">Web</a>
+								</dd>
+							</dl>
+						</li>
+						<li class="layui-nav-item">
+							<dd class="layui-this">
+								<a href="javascript:;">我的收藏</a>
+							</dd>
+						</li>
+						<li class="layui-nav-item">
+							<dd>
+								<a href="javascript:;" class="slide">个人信息</a>
+							</dd>
+						</li>
+						<li class="layui-nav-item">
+							<span>
+								<a href="javascript:;" class="slide">退出登录</a>
+							</span>
+						</li>
+					</ul>
+				</div>
+
+				<div class="main-body" id="mainBody">
+					<!--<?php include('myFavorite.html'); ?>-->
+					<?php include('myInfo.html') ?>
+				</div>
+			</div>
 		</div>
-		
+
 		<script src="js/jquery-3.0.0.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="layui/layui.js" type="text/javascript" charset="utf-8"></script>	
-		<!--<script src="js/echarts.simple.min.js" type="text/javascript" charset="utf-8"></script>-->
-		<script src="js/echarts.common.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layui/layui.js" type="text/javascript" charset="utf-8"></script>
+
 		<script>
 			layui.use('element', function() {
 				var element = layui.element;
 			});
 			
-//			
-			var myChart1 = echarts.init(document.getElementById('chartLeft'));  
-
-        // 指定图表的配置项和数据  
-       option1 = {
-    title : {
-        text: '某站点用户访问来源：',
-        x:'left'
-    },
-    tooltip : {
-        trigger: 'item',
-        formatter: "{a} <br/>{b} : {c} ({d}%)"
-    },
-    series : [
-        {
-            name: '访问来源',
-            type: 'pie',//定义为饼状
-            radius : '55%',
-            center: ['50%', '60%'],
-            data:[
-                {value:335, name:'Web'},
-                {value:310, name:'Java'},
-                {value:234, name:'PHP'},
-                {value:135, name:'Android'},
-                {value:1548, name:'JavaScript'}
-            ],
-            itemStyle: {
-                emphasis: {
-                    shadowBlur: 10,
-                    shadowOffsetX: 0,
-                    shadowColor: 'rgba(0, 0, 0, 0.5)'
-                }
-            }
-        }
-    ]
-};
-        // 使用刚指定的配置项和数据显示图表。  
-        myChart1.setOption(option1);  
 			
-	var myChart2 = echarts.init(document.getElementById('chartRight'));
-    var options2={
-        //定义一个标题
-        title:{
-            text:'测试成绩'
-        },
-         tooltip : {
-	        trigger: 'axis',
-	        formatter: "{a} <br/>{b} : {c}"
-	    },
-        //X轴设置
-        xAxis:{
-            data:['60分','70分','80分','90分','100分']
-        },
-        yAxis:{
-        },
-        //name=legend.data的时候才能显示图例
-        series:[{
-            name:'销量',
-            type:'bar',//定义为坐标系
-            data:['42','12','25','31','12']
-        }]
-
-    };
-    myChart2.setOption(options2);
+			var datas =["myInter.html",
+					"myInter.html",
+					"myFavorite.html",
+					"myInfo.html"];
+					
+			var dd = document.getElementById('slideNav').getElementsByTagName('dd');
+			for (var index=0; index < dd.length; index++) {
+			  	(function (index) {
+			    	dd[index].onclick = function () {
+						$.post(datas[index],
+						{
+							type:index
+						},
+						function(data){
+							var htmlobj = data;
+							var mainBody = $('#mainBody');
+			        		mainBody.html('');
+			        		mainBody.html(htmlobj);
+						});
+			    	};
+			    })(index);
+			}
 		</script>
-		
-		
+
 	</body>
+
 </html>
