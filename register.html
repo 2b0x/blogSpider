@@ -60,12 +60,12 @@
 						<div class="layui-clear"></div>
 						<span class="fenlei">关注分类：</span>
 						<div id="fenlei" class="">
-					      	<input type="checkbox" name="like[write]" value="1" title="Java" lay-skin="primary">
-					      	<input type="checkbox" name="like[read]" value="2" title="Web" checked lay-skin="primary">
+					      	<input type="checkbox" name="like[write]" value="1" title="Java" lay-skin="primary" lay-filter="listType">
+					      	<input type="checkbox" name="like[read]" value="2" title="Web" checked lay-skin="primary" lay-filter="listType">
 					      	<input type="checkbox" name="like[dai]" value="3" title="安卓" lay-skin="primary">
 					      	<input type="checkbox" name="like[write]" value="1" title="PHP" lay-skin="primary">
-					      	<input type="checkbox" name="like[read]" value="2" title="JavaScript" checked lay-skin="primary">
-					      	<input type="checkbox" name="like[dai]" value="3" title="算法分析" lay-skin="primary">
+					      	<!--<input type="checkbox" name="like[read]" value="2" title="JavaScript" checked lay-skin="primary">-->
+					      	<!--<input type="checkbox" name="like[dai]" value="3" title="算法分析" lay-skin="primary">-->
 					    </div>
 					    <span class="inputBox inputBase email"><input type="email" value="" placeholder="请输入联系邮箱" class="formInput"/></span>
 					    <textarea class="inputBox" name="" rows="" cols="" placeholder="请输入个人简介(限五十字内)"></textarea>
@@ -92,12 +92,12 @@
 	  		var form = layui.form;
 		
 		
-		form.on('checkbox(filter)', function(data){
-  console.log(data.elem); //得到checkbox原始DOM对象
-  console.log(data.elem.checked); //是否被选中，true或者false
-  console.log(data.value); //复选框value值，也可以通过data.elem.value得到
-  console.log(data.othis); //得到美化后的DOM对象
-});  
+//		form.on('checkbox(listType)', function(data){
+//console.log(data.elem); //得到checkbox原始DOM对象
+//console.log(data.elem.checked); //是否被选中，true或者false
+//console.log(data.value); //复选框value值，也可以通过data.elem.value得到
+//console.log(data.othis); //得到美化后的DOM对象
+//});  
 		
 		});
 		

@@ -1,0 +1,113 @@
+.body{
+	position: relative;
+	background-color: rgba(244, 244, 244,1);
+    padding-bottom: 100px;
+}
+.main{
+	width: 1200px;
+    margin-bottom: 50px;
+    margin: 0 auto;
+    border: 2px solid #009688;
+    margin-top: 20px;
+}
+.main a:hover{
+	text-decoration: underline;
+}
+.main-left{
+	margin-left: 25px;
+     background-color: white; 
+    padding-top: 50px;
+	width: 800px;
+	float: left;
+    padding-bottom: 350px;
+}
+.main-right{
+	margin-right: 25px;
+	width: 300px;
+	float: right;
+    padding-bottom: 350px;
+}
+/*头部*/
+.header-bg{
+	background-color: #009688;
+}
+.header{
+	width: 1000px;
+	height: 60px;
+	line-height: 60px;	
+	margin: 0 auto;
+}
+.logo{
+	display: inline-block;
+}
+.logo span{
+	font-size: 26px;
+	font-weight: 800;
+	color: white;
+}
+
+/*内容*/
+.layui-breadcrumb{
+	visibility: visible;
+    display: inline-block;
+    background-color: #009688;
+    width: 100%;
+    padding: 5px 0 7px;
+}
+.layui-breadcrumb a{
+	display: inline-block;
+}
+.layui-breadcrumb a cite{
+	color: white !important;
+	cursor: default;
+	overflow: hidden;
+	display: inline-block;
+}
+.layui-breadcrumb a:nth-child(1){
+	margin-left: 20px;
+}
+#artTitle{	
+    max-width: 380px;
+    display: inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+
+
+/*右边推荐*/
+.hot,.inter{
+	background-color: #fff;
+    padding: 20px 20px 15px 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.05);
+}
+.hot p,
+.inter p{
+	font-size: 16px;
+    line-height: 16px;
+    padding-left: 6px;
+    border-left: 3px solid #cf2730;
+    margin-bottom: 20px;
+    color: #333;
+    cursor: default;
+}
+.hot li,
+.inter li{
+	margin-bottom: 3px;
+}
+.hot li a,
+.inter li a{
+	display: inline-block;
+	color: #999;
+	max-width: 260px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.hot li a:hover,
+.inter li a:hover{
+	color: #c92027;
+	
+}
