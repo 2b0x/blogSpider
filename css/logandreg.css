@@ -67,6 +67,25 @@ form{
     width: 390px;
 	background-color: rgba(67, 70, 75,1);
 }
+.nickname input::-webkit-input-placeholder {
+	color: #ddd;
+	font-size:12px
+}
+
+.nickname input::-moz-placeholder {
+	font-size:12px
+	color: #ddd;
+}
+
+.nickname input:-moz-placeholder {
+	font-size:12px
+	color: #ddd;
+}
+
+.nickname input:-ms-input-placeholder {
+	font-size:12px
+	color: #ddd;
+}
 .rbox{
 	padding: 0 40px;
 }

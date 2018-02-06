@@ -184,50 +184,48 @@
 
 		var type = 1;
 		var listData;
-		fillData(1, 1);
-		var length = listData.length;
-		createPage(length);
+		
+		init();
+
+		//初始化数据
+		function init(type){
+			var type = type;
+			getArticle(type,0,0);
+			fillData(1, 1);
+			var length = listData.length;
+			createPage(length);
+		}
 
 		//分类切换
 		$('#classList li').click(function() {
 			var _index = $(this).index();
 			type = (_index + 1);
+			getArticle(type);
 			fillData(type, 1);
 			var length = listData.length;
 			createPage(length);
 		});
 
-		//搜索  http://localhost:88//blogSpD/index.html###
+		//搜索  
 		$('#search').click(function() {
-			var keyword = $('input[name=search]');
-//			var searchData = $('#keyword');
-			var isNull = keyword.val().trim().replace(/\s/g, "");
+			var search = $('input[name=search]');
+			var isNull = search.val().trim().replace(/\s/g, "");
 			if(isNull == null || isNull == "" || isNull == ' ') {
 				alert('搜索关键字不能为空');
-				keyword.val('');
-				keyword.focus();
-			} 
-//else {
-//				var keyword = keyword.val();
-//				$.ajax({
-//					async: false,
-//					type: "post",
-//					url: "searchInfo.php",
-//					data: {
-//						type: type,
-//						keyword: keyword
-//					},
-//					success: function(response, status, xhr) {
-//						datas = JSON.parse(response);
-//						searchDeal(datas);
-//					}
-//				});
-//			}
+				search.val('');
+				search.focus();
+			}else {
+				var keyword = search.val();
+				getArticle(type, 1, keyword);
+				fillData(type, 1);
+				var length = listData.length;
+				createPage(length);
+				search.val('');
+			}
 		});
 
 		//填充列表内容
 		function fillData(type, page) {
-			getArticle(type);
 			var type = type;
 			var pageEnd;
 			var pageStart = (page - 1) * 10;
@@ -239,9 +237,7 @@
 				pageEnd = page * 10;
 			}
 			var types = ['', 'Java', 'Web', 'Android', 'PHP'];
-
 			$('#listContent').html('');
-
 			for(var i = pageStart; i < pageEnd; i++) {
 				var list = '<li class="blog-unit"><h3 class="blog-title"><a href="">' + listData[i].title + '</a></h3><div class="unit-contorl"><span>来源：</span><span id="from">' + listData[i].from + '</span><span>分类：</span><span id="class">' + types[type] + '</span><span id="time">2017-12-31 14:49:59</span><span class="unit-con-right"><a href="###">收藏</a><a href="###">查看</a></span></div></li>';
 				$('#listContent').append(list);
@@ -250,15 +246,18 @@
 		}
 
 		//获取文章内容
-		function getArticle(type) {
+		function getArticle(type,isSearch,keyword) {
 			var type = type;
-			var page = page;
+			var isSearch =isSearch;
+			var keyword = keyword;
 			$.ajax({
 				async: false,
-				url: "getArticleTitle.php",
+				url: "getArticle.php",
 				type: "POST",
 				data: {
-					type: type
+					type: type,
+					isSearch: isSearch,
+					keyword: keyword
 				},
 				success: function(response, status, xhr) {
 					listData = JSON.parse(response);
