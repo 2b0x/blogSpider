@@ -44,7 +44,7 @@ html{
     padding: 20px 30px;
     
     /* background-color: white; */
-    min-width: 960px;
+    min-width: 740px;
     position: relative;
     /* margin: 0 auto; */
 
@@ -144,13 +144,13 @@ html{
 /*个人信息*/
 .myInfo{
 	padding: 0 40px;
-	min-width: 880px;
+	min-width: 710px;
 	display: inline-block;
 	
     margin: 0 auto;
     position: absolute;
-    margin-left: -480px;
-    left: 50%;
+    margin-left: 50%;
+    left: -400px;
 
 }
 .myInfoLeft{
@@ -200,7 +200,7 @@ dt{
  disabled:disabled;
 }
 .myInfoRight{
-    margin-left: 150px;
+    margin-left: 40px;
     display: inline-block;
     /*width: 400px;*/
     /*height: 200px;*/

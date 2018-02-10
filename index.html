@@ -239,7 +239,7 @@
 			var types = ['', 'Java', 'Web', 'Android', 'PHP'];
 			$('#listContent').html('');
 			for(var i = pageStart; i < pageEnd; i++) {
-				var list = '<li class="blog-unit"><h3 class="blog-title"><a href="">' + listData[i].title + '</a></h3><div class="unit-contorl"><span>来源：</span><span id="from">' + listData[i].from + '</span><span>分类：</span><span id="class">' + types[type] + '</span><span id="time">2017-12-31 14:49:59</span><span class="unit-con-right"><a href="###">收藏</a><a href="###">查看</a></span></div></li>';
+				var list = '<li class="blog-unit"><h3 class="blog-title"><a href="javascript:void(0);" data-href="' + listData[i].id + '">' + listData[i].title + '</a></h3><div class="unit-contorl"><span>来源：</span><span id="from">' + listData[i].from + '</span><span>分类：</span><span id="class">' + types[type] + '</span><span id="time">2017-12-31 14:49:59</span><span class="unit-con-right"></span></div></li>';
 				$('#listContent').append(list);
 			}
 
@@ -290,6 +290,24 @@
 		for(var i = 0; i < img.length; i++) {
 			img[i].style.backgroundImage = 'url(' + imgPath[i] + ')';
 		}
+		
+		
+		$('#listContent').on('click','a',function(){
+			var _href = $(this).attr('data-href');
+			$.ajax({
+				async:false,
+				type:"post",
+				url:"getContent.php",
+				data:{
+					href: _href
+				},
+				success:function(response,xhr){
+					console.log(response);
+					
+				}
+			});
+		});
+		
 	</script>
 
 </html>

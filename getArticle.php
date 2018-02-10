@@ -1,4 +1,5 @@
 <?php
+	 header("Content-type: text/html; charset='utf-8'");
 	
 	require('conn.php');
 	
@@ -20,10 +21,10 @@
 	$pageStart=$pageEnd-10;
 	
 	if($isSearch==0){
-		$sql = "SELECT * FROM dom2 WHERE type='" . $type . "'";     
+		$sql = "SELECT * FROM dom2 WHERE type='" . $type . "' order by id desc";     
 	}else{
 		$keyword = $_POST[keyword];
-		$sql = "SELECT * FROM dom2 WHERE type='" . $type . "' AND title LIKE '%" . $keyword . "%' ";   //mysql查询语句  
+		$sql = "SELECT * FROM dom2 WHERE type='" . $type . "' AND title LIKE '%" . $keyword . "%' order by id desc";   //mysql查询语句  
 	}
 
 	$rs = mysql_query($sql) or die ("查询失败"); 
@@ -34,6 +35,7 @@
 	$datas = array();
 	$length=count($data);
 	for($i=0;$i<$length;$i++){	
+		$datas[$i][id] = $data[$i][id];
 		$datas[$i][title] = $data[$i][title];
 		$datas[$i][href] = $data[$i][href];
 		$datas[$i][from] = $data[$i][from];
