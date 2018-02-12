@@ -1,10 +1,45 @@
 .main-left{
-	width: 1000px;	
+	width: 940px;	
 }
-.main-right{
-	
+.main-right{	
     position:  absolute;
     right:  40px;
     top: 500px;
-
 }
+#articleContent{
+	padding: 30px 30px 50px;
+}
+.artical-info{
+	color: #999;
+    line-height: 1;
+    padding: 0 0 20px;
+    margin-bottom: 30px;
+    border-bottom: 2px dashed #F44336;
+}
+.artical-info span{
+	margin-right: 30px;
+	color: #2196F3;
+}
+.artical-copyright{
+	color: #999;
+    line-height: 1;
+    padding: 20px 0;
+    margin-top: 50px;
+    border-top: 1px dashed #ccc;
+    border-bottom: 1px dashed #ccc;
+}
+.blog-name{
+	max-width: 700px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/*51CTO*/
+.editor-side-new *{
+	font-size: 16px;
+}
+.main-content p{
+	margin-bottom: 10px;
+}
+/*51CTO*/

@@ -59,13 +59,8 @@
 
 			<div class="main">
 				<div class="main-top">
-					<span class="blog-name">RoyRocco的博客</span>
-					<a href="###">
-						<i class="layui-icon">&#xe65c;</i>退出登录
-					</a>
-					<a href="###">
-						<i class="layui-icon">&#xe642;</i>修改个人信息
-					</a>
+					<span class="blog-name"><?php if(!empty($username)){echo $username . '的博客';}else{echo '用户未登录';} ?></span>
+					<?php if(empty($username)){echo '<a href="register.php"><i class="layui-icon">&#xe60a;</i> 注册</a><a href="login.html"><i class="layui-icon">&#xe609;</i> 登录</a>';}else{echo '<a href="loginOut.php"><i class="layui-icon">&#xe65c;</i> 退出登录</a>';} ?>
 				</div>
 				<div class="main-body">
 					<div class="main-left" id="main-left">
@@ -95,21 +90,21 @@
 						<!--收藏 关注 笔记-->
 						<div class="user-info">
 							<dl class="info-bar">
-								<dt class="info-pic"><img src="img/4.jpg" alt="" /></dt>
+								<dt class="info-pic" style="    background-image: url('<?php if(!empty($username)){echo $userpic;}else{echo 'img/personPic/15181912870.jpg';} ?>');"></dt>
 								<dd class="info-name">
-									<p>RoyRocco</p>
+									<p><?php if(!empty($username)){echo $username;}else{echo '用户未登录';} ?></p>
 								</dd>
 							</dl>
 							<div class="info-number">
-								<a href="###" class="my-index">个人主页</a>
+								<a href="myhome.php" target="_blank" class="my-index">个人主页</a>
 
 								<dl>
 									<dt>关注</dt>
-									<dd>28</dd>
+									<dd><?php if(!empty($username)){echo $focusNum;}else{echo '---';} ?></dd>
 								</dl>
 								<dl>
 									<dt>收藏</dt>
-									<dd>218</dd>
+									<dd><?php if(!empty($username)){echo $favoriteNum;}else{echo '---';} ?></dd>
 								</dl>
 								<!--<dl>
 									<dt>笔记</dt><dd>8</dd>
@@ -239,10 +234,9 @@
 			var types = ['', 'Java', 'Web', 'Android', 'PHP'];
 			$('#listContent').html('');
 			for(var i = pageStart; i < pageEnd; i++) {
-				var list = '<li class="blog-unit"><h3 class="blog-title"><a href="javascript:void(0);" data-href="' + listData[i].id + '">' + listData[i].title + '</a></h3><div class="unit-contorl"><span>来源：</span><span id="from">' + listData[i].from + '</span><span>分类：</span><span id="class">' + types[type] + '</span><span id="time">2017-12-31 14:49:59</span><span class="unit-con-right"></span></div></li>';
+				var list = '<li class="blog-unit"><h3 class="blog-title"><a href="javascript:void(0);" data-href="' + listData[i].id + '">' + listData[i].title + '</a></h3><div class="unit-contorl"><span>来源：</span><span id="from">' + listData[i].from + '</span><span>分类：</span><span id="class">' + types[type] + '</span><span class="unit-con-right"></span></div></li>';
 				$('#listContent').append(list);
 			}
-
 		}
 
 		//获取文章内容
@@ -302,8 +296,11 @@
 					href: _href
 				},
 				success:function(response,xhr){
-					console.log(response);
-					
+//					console.log(response);
+					if(response==1){
+						var targetUrl = "articleDetail.php?random="+_href;
+						window.open(targetUrl,"_blank"); 
+					}
 				}
 			});
 		});

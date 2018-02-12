@@ -7,11 +7,8 @@
 		<meta name="renderer" content="webkit">
 		<link rel="stylesheet" type="text/css" href="layui/css/layui.css" />
 		<link rel="stylesheet" href="css/myhome.css" />
-
-		<style>
-
-		</style>
-
+		<script src="js/jquery-3.0.0.min.js"></script>
+		<script src="layui/layui.js"></script>
 		<title>我的主页</title>
 	</head>
 
@@ -30,7 +27,7 @@
 						<!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
 						<span class="userBox">
 							<span class="userPic"></span>
-							<span class="userName">RoyRocco</span>
+						<span class="userName">RoyRocco</span>
 						</span>
 						<li class="layui-nav-item layui-nav-itemed">
 							<a href="javascript:;">我的关注</a>
@@ -63,42 +60,42 @@
 
 				<div class="main-body" id="mainBody">
 					<?php include('myFavorite.html'); ?>
-						
+
 				</div>
 			</div>
 		</div>
 
-		<script src="js/jquery-3.0.0.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="layui/layui.js" type="text/javascript" charset="utf-8"></script>
+	
 
 		<script>
 			layui.use('element', function() {
 				var element = layui.element;
 			});
-			
-			
-			var datas =["myInter.html",
-					"myInter.html",
-					"myFavorite.html",
-					"myInfo.html"];
-					
+			var listData;
+			var datas = ["myInter.html",
+				"myInter.html",
+				"myFavorite.html",
+				"myInfo.html"
+			];
+
 			var dd = document.getElementById('slideNav').getElementsByTagName('dd');
-			for (var index=0; index < dd.length; index++) {
-			  	(function (index) {
-			    	dd[index].onclick = function () {
-						$.post(datas[index],
-						{
-							type:index
-						},
-						function(data){
-							var htmlobj = data;
-							var mainBody = $('#mainBody');
-			        		mainBody.html('');
-			        		mainBody.html(htmlobj);
-						});
-			    	};
-			    })(index);
+			for(var index = 0; index < dd.length; index++) {
+				(function(index) {
+					dd[index].onclick = function() {
+						$.post(datas[index], {
+								type: index
+							},
+							function(data) {
+								var htmlobj = data;
+								var mainBody = $('#mainBody');
+								mainBody.html('');
+								mainBody.html(htmlobj);
+							});
+					};
+				})(index);
 			}
+
+			
 		</script>
 
 	</body>

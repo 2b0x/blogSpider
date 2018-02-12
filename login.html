@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<title>登录</title>
@@ -15,34 +16,34 @@
 				<div class="bgwhite hl2" style="width: 290px;"></div>
 				<div class="bgwhite hl2" style="width: 310px;"></div>
 				<div class="bgwhite hl2" style="width: 220px;margin-bottom: 35px;"></div>
-				
+
 				<div class="bggreen hl1" style="width: 140px;margin-bottom: 20px;"></div>
 				<div class="bghui hl2" style="margin-bottom: 10px;width: 90px;"></div>
 				<div class="bgwhite marl hl2" style="width: 100px;"></div>
 				<div class="bgwhite marl hl2" style="width: 180px;"></div>
 				<div class="bgwhite marl hl2" style="width: 140px;margin-bottom: 20px;"></div>
-				
+
 				<div class="bghui hl2" style="width: 175px;margin-bottom: 10px;"></div>
 				<div class="bgwhite marl hl2" style="width: 50px;"></div>
 				<div class="bgwhite marl hl2" style="width: 60px;"></div>
 				<div class="bgwhite marl hl2" style="width: 120px;"></div>
 				<div class="bgwhite marl hl2" style="width: 90px;margin-bottom: 20px;"></div>
-				
+
 				<div class="bghui hl2" style="width: 175px;"></div>
 				<div class="bgwhite marl hl2" style="width: 80px;"></div>
 				<div class="bgwhite marl hl2" style="width: 80px;"></div>
 				<div class="bgwhite marl hl2" style="width: 65px;margin-bottom: 20px;"></div>
-				
+
 				<div class="bggreen hl1" style="width: 140px;"></div>
 				<div class="bgwhite marl hl2" style="width: 180px;"></div>
 			</div>
-			
+
 			<div class="right">
 				<div class="rbox">
 					<form action="" method="post">
 						<span class="start">开始你的旅程</span>
-						<p><span class="logUsername"></span><input type="text" value="" placeholder="请输入帐号"/></p>
-						<p><span class="logPassword"></span><input type="password" value="" placeholder="请输入密码"/></p>
+						<p><span class="logUsername"></span><input type="text" id="userEmail" placeholder="请输入登录帐号" /></p>
+						<p><span class="logPassword"></span><input type="password" id="password" placeholder="请输入登录密码" /></p>
 						<input class="form-btn login" type="button" name="" id="login" value="登 录" />
 						<span class="end">没有帐号？</span>
 						<span class="regtitle">马上注册一个吧！</span>
@@ -52,14 +53,40 @@
 			</div>
 		</div>
 
-
-
-
-
-		
 	</body>
+	<script src="js/jquery-3.0.0.min.js"></script>
 	<script>
-		
-		
+		var ref = '';
+		if(document.referrer.length > 0) {
+			ref = document.referrer;
+			if(ref.indexOf('register') > 0) {
+				ref = 'index.php';
+			}
+		} else {
+			ref = 'index.php';
+		}
+
+		$('#login').click(function() {
+			var userEmail = $('#userEmail').val();
+			var password = $('#password').val();
+			$.ajax({
+				type: "post",
+				url: "checkLogin.php",
+				async: false,
+				data: {
+					userEmail: userEmail,
+					password: password
+				},
+				success: function(response, status, xhr) {
+					if(response == 1) {
+						alert('登录成功');
+						window.location.href = ref;
+					} else {
+						alert('登录失败，请检查帐号及密码正确性');
+					}
+				}
+			});
+		});
 	</script>
+
 </html>

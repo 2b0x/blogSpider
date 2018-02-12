@@ -272,6 +272,10 @@ input:-ms-input-placeholder {
 	margin-right: 10px;
 	overflow: visible;
 	position: relative;
+	background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 50%;
 }
 
 .info-pic img {

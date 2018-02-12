@@ -4,27 +4,31 @@
 	require('conn.php');
 	
 	$artId = $_POST['href'];
-	$sql = "select * from dom2 where id='" . $artId . "'";
-	$rs = mysql_query($sql) or die ("统计失败");	
-	$data = array(); 
-	while($row = mysql_fetch_array($rs)){  
-	    $data[] = $row;  
+	$artSQL = "select * from dom2 where id='" . $artId . "'";
+	$artRS = mysql_query($artSQL) or die ("统计失败");	
+	$artData = array(); 
+	while($row = mysql_fetch_array($artRS)){  
+	    $artData[] = $row;  
 	} 
 	
-	if( empty($data[0][content]) ){
+	if( empty($artData[0][content]) ){
 //		echo "空";
-		$url = $data[0][href];
+		$url = $artData[0][href];
 		$content=getContent($url);
-		$test = htmlspecialchars($content, ENT_QUOTES);	
+		$artContent = $content[0][0];
+		$artTime = $content[1];
+		$test = htmlspecialchars($artContent, ENT_QUOTES);	
 		$getContSQL = "UPDATE dom2 SET content='" . $test . "' where id='" . $artId . "'" ;
+		$getContSQL = "UPDATE dom2 SET content='" . $test . "',publishtime='" . $artTime . "' where id='" . $artId . "'";
 		if (!mysql_query($getContSQL)) {
 			echo mysql_error();
 //			echo "0";
 		} else {
 			echo "1";
 		}
-		
+//		echo $artContent[0] . $artTime;
 	}else{
+		echo "1";
 //		echo "非空";
 	}
 	
@@ -55,8 +59,10 @@
 	function getContent($u){
 		$d = getData($u);
 		$ds = str_get_html($d);
+		$res = array(); 
 //		$res = $ds->find('div[id=blog_content]');//iteye的规则
-		$res = $ds->find('div[class=main-content]');//51CTO的规则
-		return $res[0];
+		$res[0] = $ds->find('div[class=main-content]');//51CTO的规则
+		$res[1] = $ds->find('a.time',0)->plaintext;
+		return $res;
 	}
 ?>

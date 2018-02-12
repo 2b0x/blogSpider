@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title>首页</title>
+		<title>文章详情</title>
 		<link rel="stylesheet" type="text/css" href="css/index.css" />
 		<link rel="stylesheet" type="text/css" href="css/base.css" />
 		<link rel="stylesheet" type="text/css" href="css/articleDetail.css"/>
@@ -39,34 +39,25 @@
 			<div class="layui-clear"></div>
 
 			<div class="main">
-				<div class="main-top">
-					<span class="blog-name">RoyRocco的博客</span>
-					<a href="###">
-						<i class="layui-icon">&#xe65c;</i>收藏文章
-					</a>
+				<div class="main-top" id="mainTop">
+					<span class="blog-name" title="<?php echo $artiTitle; ?>"><?php echo $artiTitle; ?></span>
+					<?php 
+						if($isFavorite){
+							echo '<a href="javascript:void(0);" id="outFavorite"><i class="layui-icon">&#xe600;</i> <span>取消收藏</span></a>';
+						}else{
+							echo '<a href="javascript:void(0);" id="addFavorite"><i class="layui-icon">&#xe600;</i> <span>收藏文章</span></a>';
+						} 
+					?>
+					
 					
 				</div>
 				<div class="main-body">
-					<div class="main-left" id="main-left">
-						<ul id="listContent">
-							<!--<li class="blog-unit">
-								<h3 class="blog-title"><a href="">随便想一个标题来填充吧</a></h3>
-								<div class="unit-contorl">
-									<span>来源：</span><span id="from">CSDN</span>
-									<span>分类：</span><span id="class">Java</span>
-									<span id="time">2017-12-31 14:49:59</span>
-									<span class="unit-con-right">
-										<a href="###">收藏</a>
-										<a href="###">查看</a>
-									</span>
-									
-								</div>
-							</li>-->
-						</ul>
+					<div class="main-left" id="articleContent">
+						<div class="artical-info">来源：<span><?php echo $artiFrom; ?></span>分类：<span><?php echo $artiType; ?></span>发帖时间：<span><?php echo $artiTime; ?></span></div>
+						
+						<?php echo $artiContent; ?>
 
-						<div class="page">
-							<div id="page"></div>
-						</div>
+						<div class="artical-copyright">版权声明：原创作品，如需转载，请注明出处。否则将追究法律责任</div>
 
 					</div>
 				</div>
@@ -94,12 +85,54 @@
 				indicator: 'none'
 			});
 		});
-			//广告图展示
+		
+		//广告图展示
 		var imgPath = ['img/5.jpg', 'img/6.jpg'];
 		var img = $('#slider .img');
 		for(var i = 0; i < img.length; i++) {
 			img[i].style.backgroundImage = 'url(' + imgPath[i] + ')';
 		}
+		
+		
+		//收藏文章
+		$('#mainTop').on('click','#addFavorite',function(){
+			var artiId = '<?php echo $articleId; ?>';
+			$.ajax({
+				async:false,
+				type:"post",
+				url:"addFavorite.php",
+				data:{
+					artiId:artiId
+				},
+				success:function(response,xhr){
+					if(response==1){
+						alert('收藏成功');
+						$('#addFavorite span').html('取消收藏');
+						$('#addFavorite').attr('id','outFavorite');
+					}
+				}
+			});
+		});
+		
+		//取消收藏
+		$('#mainTop').on('click','#outFavorite',function(){
+			var artiId = '<?php echo $articleId; ?>';
+			$.ajax({
+				async:false,
+				type:"post",
+				url:"outFavorite.php",
+				data:{
+					artiId:artiId
+				},
+				success:function(response,xhr){
+					if(response==1){
+						alert('已取消收藏');
+						$('#outFavorite span').html('收藏文章');
+						$('#outFavorite').attr('id','addFavorite');
+					}
+				}
+			});
+		});
 		
 	</script>
 

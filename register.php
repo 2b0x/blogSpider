@@ -12,8 +12,6 @@
 			$user_focus = $_POST['focus'];
 			$password = $_POST['password'];
 			
-//			echo $user_name . '--' . $user_email . '--' . $user_intro . '--' . $user_focus . '--' . $password . '--' . $path;
-			
 			if(move_uploaded_file($_FILES['photo']['tmp_name'], $path) ){
 				$sqlstr = "insert into user(email,username,intro,focus,password,personpic) values('".$user_email."','".$user_name."','".$user_intro."','".$user_focus."','".$password."','".$path."')"; 
 				@mysql_query($sqlstr) or die(mysql_error()); 
@@ -21,8 +19,6 @@
 			}else{  
 			    $response['isSuccess'] = false;  
 			}  
-////			echo '<p><img src="' . $path .'" width="150"></p>'; 
-//			Header("Location: login.php"); 
 			exit();  
 	
 		
