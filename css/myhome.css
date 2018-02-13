@@ -139,6 +139,34 @@ html{
 	display: inline-block;
 }
 
+/*我的收藏*/
+.myFavorite{
+	min-height: 100%;
+	position: relative;
+	padding-bottom: 100px;
+}
+.page{
+	position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+/*我的收藏*/
+
+
+
+
+
+/*我的关注*/
+.myInter{
+	    position: relative;
+    padding-bottom: 100px;
+}
+/*我的关注*/
+
+
+
+
 
 
 /*个人信息*/
@@ -190,14 +218,15 @@ dt{
     font-size: 18px;
     text-align: center;
     color: white;
-    background-color: #85de17;
+    background-color: #009688;
     border-radius: 5px;
     cursor: default;
 }
 .myInfoLeft dd textarea{
 	height: 130px;
 	resize: none;
- disabled:disabled;
+ 	disabled:disabled;
+ 	padding: 8px 8px;
 }
 .myInfoRight{
     margin-left: 40px;

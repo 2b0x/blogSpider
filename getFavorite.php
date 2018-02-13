@@ -7,7 +7,7 @@
 	$userEmail = $_SESSION['email'];
 	
 	//获取文章信息
-	$getArtiSQL = "SELECT * FROM favorite WHERE userEmail='" . $userEmail . "'  order by artiTitle desc";   
+	$getArtiSQL = "SELECT * FROM favorite WHERE userEmail='" . $userEmail . "'  order by addTime desc";   
 	$artiRS = mysql_query($getArtiSQL) or die("查询失败");
 	$artiData = array();
 	while ($row = mysql_fetch_array($artiRS)) {
