@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title>登录</title>
+		<title>修改个人信息</title>
 		<link rel="stylesheet" type="text/css" href="css/logandreg.css" />
 		<link rel="stylesheet" type="text/css" href="layui/css/layui.css" />
 	</head>
@@ -44,29 +44,30 @@
 
 					<form action="register.php" method="post" class="layui-form">
 						<dd class="pic">
-							<div class="img" id="img"></div>
+							<div class="img" id="img" style="background-image: url(<?php echo $userpic; ?>);"></div>
 							<a href="javascript:;" class="a-upload">
 								<input type="file" name="photo" title="文件不超过200kb,大小最佳为60*60" onchange="imgPreview(this)">上传头像
 							</a>
 						</dd>
-						<span class="title">个人基本信息</span>
-						<span class="inputBox nickname"><input type="text" value="" id="username" placeholder="请输入昵称" class="formInput"/></span>
+						<span class="title">修改个人信息</span>
+						<span class="inputBox nickname">昵称：<input type="text" style="width: 135px;" value=<?php echo $username ?> id="username" placeholder="请输入昵称" class="formInput"/></span>
 						
 						<div class="layui-clear"></div>
 						
-						<span class="fenlei">关注分类：(最多两项)</span>
+						<span class="fenlei">我的关注：(最多两项)</span>
 						<div id="fenlei" class="">
-							<input type="checkbox" name="" value="1" title="Java" lay-skin="primary" lay-filter="listType">
-							<input type="checkbox" name="" value="2" title="Web" checked lay-skin="primary" lay-filter="listType">
-							<input type="checkbox" name="" value="3" title="Android" lay-skin="primary" lay-filter="listType">
-							<input type="checkbox" name="" value="4" title="PHP" lay-skin="primary" lay-filter="listType">
+							<input type="checkbox" name="Java" value="1" title="Java" lay-skin="primary" lay-filter="listType">
+							<input type="checkbox" name="Web" value="2" title="Web" lay-skin="primary" lay-filter="listType">
+							<input type="checkbox" name="Android" value="3" title="Android" lay-skin="primary" lay-filter="listType">
+							<input type="checkbox" name="PHP" value="4" title="PHP" lay-skin="primary" lay-filter="listType">
 						</div>
-						<textarea class="inputBox" id="intro" name="" rows="" cols="" placeholder="请输入个人简介(限五十字内)"></textarea>
-						<span class="setting">设置帐号信息:</span>
-						<span class="inputBox inputBase regUserName"><input type="text" value="" id="email" placeholder="请输入登录邮箱" class="formInput"/></span>
-						<span class="inputBox inputBase regPassword"><input type="password" id="password" name="password" value="" placeholder="请输入登录密码" class="formInput"/></span>
-						<span class="inputBox inputBase regPassword"><input type="password" name="reqpsw" value="" placeholder="请确认登录密码" class="formInput"/></span>
-						<input class="form-btn login inputBase" type="button" name="" id="register" value="注 册" onclick="subCheck()"/>
+						<span class="fenlei">我的简介：</span>
+						<textarea class="inputBox" id="intro" name="" rows="" cols="" placeholder="请输入个人简介(限五十字内)"><?php echo $userintro; ?></textarea>
+						<span class="setting">帐号登录信息:</span>
+						<span class="inputBox inputBase regUserName">登录邮箱：<input type="text"style="width: 190px;" disabled="disabled" value=<?php echo $userEmail; ?> id="email" placeholder="请输入登录邮箱" class="formInput"/></span>
+						<span class="inputBox inputBase regPassword"><input type="password" id="password" name="password" value="" placeholder="是否修改你的密码" class="formInput"/></span>
+						<span class="inputBox inputBase regPassword"><input type="password" name="reqpsw" value="" placeholder="请确认密码" class="formInput"/></span>
+						<input class="form-btn login inputBase" type="button" name="" id="register" value="修改信息" onclick="subCheck()"/>
 					</form>
 				</div>
 			</div>
@@ -80,17 +81,15 @@
 			var form = layui.form;
 		});
 
-		var picStatus=0;
-
-		$("#email").blur(function() {
-			var ePattern = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-			if(!ePattern.test($(this).val())) {
-				$(this).val("");
-				$(this).attr('placeholder', '请输入正确的邮箱');
-				$(this).focus();
-			}
-		});
-
+		
+		//填充分类
+		var focus = "<?php echo $focus; ?>";
+		focus = focus.split('-');
+		for(var i=0;i<(focus.length)-1;i++){
+			var locat = 'input[name='+focus[i]+']';
+			$(locat).attr('checked','checked');
+		}
+		
 		$("#username").blur(function() {
 			var uPattern = /^[a-zA-Z0-9\u4e00-\u9fa5]{3,6}$/;
 			if(!uPattern.test($(this).val())) {
@@ -100,20 +99,10 @@
 			}
 		});
 
-//		$("#phone").blur(function() {
-//			var mPattern = /^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(18[0,5-9]))\d{8}$/;
-//			if(!mPattern.test($(this).val())) {
-//				$(this).val("");
-//				$(this).attr('placeholder', '请输入正确的手机格式');
-//				$(this).focus();
-//			}
-//		});
 
 		function subCheck() {
 			var reqpsw = document.getElementsByName('reqpsw')[0];
-			var unique = 0;
 			var username = $('#username').val();
-			var email = $('#email').val();
 			var intro = $('#intro').val();
 			var password = $('#password').val();
 
@@ -135,32 +124,10 @@
 				alert("两次密码输入不一致请检查");
 				return false;
 			}
-			
-			$.ajax({
-				async: false,
-				type: "post",
-				url: "isUnique.php",
-				data: {
-					email: email
-				},
-				success: function(response, status, xhr) {
-					result = JSON.parse(response);
-					unique = result[0];
-				}
-			});
-			if(unique == 1) {
-				alert('当前邮箱已被注册，请使用新邮箱！');
-				return false;
-			}
-			if(picStatus == 0){
-				alert('请上传头像！');
-				return false;
-			}
 			var fileObj = document.getElementsByName('photo')[0].files[0];
 			var formData = new FormData();
 			formData.append('photo', fileObj);
 			formData.append('username', username);
-			formData.append('email', email);
 			formData.append('intro', intro);
 			formData.append('focus', focus);
 			formData.append('password', password);
@@ -168,16 +135,17 @@
 			$.ajax({
 				async:false,
 				type:"post",
-				url:"register.php",
+				url:"updatePersonInfo.php",
 				data: formData ,
 				processData: false,
 				contentType: false,
 				success:function(response,xhr){
 					if(response==1){
-						alert("注册成功");
-						window.location.href = "login.html";
-					}else{
+						alert("修改成功");
 						console.log(response);
+						window.location.href = "myhome.php";
+					}else{
+//						console.log(response);
 					}
 				}
 			});
@@ -201,9 +169,6 @@
 			}
 			//读取完成
 			reader.onload = function(e) {
-				
-				picStatus=1;
-				
 				//获取图片dom
 				var imgs = document.getElementById("img");
 

@@ -19,22 +19,16 @@
 		$artTime = $content[1];
 		$test = htmlspecialchars($artContent, ENT_QUOTES);	
 		$getContSQL = "UPDATE dom2 SET content='" . $test . "' where id='" . $artId . "'" ;
-		$getContSQL = "UPDATE dom2 SET content='" . $test . "',publishtime='" . $artTime . "' where id='" . $artId . "'";
 		if (!mysql_query($getContSQL)) {
 			echo mysql_error();
 //			echo "0";
 		} else {
 			echo "1";
 		}
-//		echo $artContent[0] . $artTime;
 	}else{
 		echo "1";
 //		echo "非空";
 	}
-	
-//	echo $artId;
-	
-//	echo empty($data[0][content]); 判断内容是否为空
 	
 	mysql_close();
 	
@@ -60,9 +54,11 @@
 		$d = getData($u);
 		$ds = str_get_html($d);
 		$res = array(); 
-//		$res = $ds->find('div[id=blog_content]');//iteye的规则
-		$res[0] = $ds->find('div[class=main-content]');//51CTO的规则
-		$res[1] = $ds->find('a.time',0)->plaintext;
-		return $res;
+//	 	$res = $ds->find('div[id=blog_content]');//iteye的规则
+//	 	$res = $ds->find('div[id=cnblogs_post_body]');//博客园的规则
+		$res = $ds->find('div[class=main-content]');//51CTO的规则
+		return $res[0];
 	}
+
+	
 ?>

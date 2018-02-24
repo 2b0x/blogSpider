@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>后台管理</title>
+		<link rel="stylesheet" href="css/admin.css" />
+		<link rel="stylesheet" href="layui/css/layui.css"/>
+	</head>
+
+	<body>
+		<div class="container">
+			<div class="headerBg"></div>
+			<div class="header">
+				<div class="logo">
+					<span>后台管理系统</span>
+				</div>
+				<div class="topNav" id="topNav">
+					<div class="classType">
+						<a href="javascript:void(0);" class="active">Java</a>
+						<a href="javascript:void(0);">Web</a>
+						<a href="javascript:void(0);">Android</a>
+						<a href="javascript:void(0);">PHP</a>
+					</div>
+
+				</div>
+				<div class="adminUser">
+					<a href="javascript:void(0);">
+						<?php if(!empty($adminName)){echo '<a href="adminOut.php">退出管理员帐号</a>';}else{echo '<a href="adminLog.html">用户登录</a>';} ?></a>
+				</div>
+			</div>
+
+			<div class="content" id="content">
+				<a href="javascript:void(0);" class="btn" id="newSpider">爬取新文章</a>
+				<a href="javascript:void(0);" class="btn" id="delSpider">删除上一记录结点</a>
+				<p style="margin-left: 50px; margin-bottom: 30px;">一次爬取记录条数为45条，建议每7天爬取一次</p>
+				<div class="myInter">
+					<ul class="article-list" id="listContent">
+						<!--<li class="blog-unit">
+							<h3 class="blog-title"><a href="">随便想一个标题来填充吧</a></h3>
+							<div class="unit-contorl">
+								<span>来源：</span><span id="from">CSDN</span>
+								<span>分类：</span><span id="class">Java</span>
+								<span>爬取时间：</span><span id="getTime">2010-08-11</span>
+							</div>
+						</li>-->
+					</ul>
+
+					<div class="page">
+						<div id="page"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	</body>
+		<script src="js/jquery-3.0.0.min.js"></script>
+		<script src="layui/layui.js"></script>
+	<script>
+		//右侧导航栏
+		$('#topNav a').click(function() {
+			var _this = $(this);
+			var _index = $(this).index();
+
+			_this.siblings().removeClass('active'); //移除所有的active样式
+			_this.addClass('active'); //为当前激活对象添加active样式
+
+		});
+
+		var listData = null;
+		var classType = 1;
+
+		init(classType);
+
+		//初始化数据
+		function init(type) {
+			var type = type;
+			getArticle(type);
+			fillData(1, 1);
+			var length = listData.length;
+			createPage(length);
+		}
+
+		//填充列表内容
+		function fillData(type, page) {
+			var type = type;
+			var pageEnd;
+			var pageStart = (page - 1) * 10;
+			var length = listData.length;
+			var isEnd = Math.ceil(length / 10);
+			if(page == isEnd) {
+				pageEnd = length;
+			} else {
+				pageEnd = page * 10;
+			}
+			var types = ['', 'Java', 'Web', 'Android', 'PHP'];
+			$('#listContent').html('');
+			for(var i = pageStart; i < pageEnd; i++) {
+				var list = '<li class="blog-unit"><h3 class="blog-title"><a href="javascript:void(0);" data-href="' + listData[i].id + '">' + listData[i].title + '</a></h3><div class="unit-contorl"><span>来源：</span><span id="from">' + listData[i].from + '</span><span>分类：</span><span id="class">' + types[classType] + '</span><span>爬取时间：</span><span id="getTime">' + listData[i].gettime + '</span></div></li>';
+				$('#listContent').append(list);
+			}
+		}
+
+		//获取文章内容
+		function getArticle(type) {
+			var type = type;
+			$.ajax({
+				async: false,
+				url: "getArticle.php",
+				type: "POST",
+				data: {
+					type: type
+				},
+				success: function(response, status, xhr) {
+					listData = JSON.parse(response);
+				}
+			});
+		}
+
+		//分页
+		function createPage(totalPages) {
+			var totalPages = totalPages;
+			layui.use('laypage', function() {
+				var laypage = layui.laypage;
+				//执行一个laypage实例
+				laypage.render({
+					elem: 'page', //注意，这里的 test1 是 ID，不用加 # 号
+					count: totalPages, //数据总数，从服务端得到
+					jump: function(obj, first) {
+						//首次不执行
+						if(!first) {
+							fillData(classType, obj.curr);
+						}
+					}
+				});
+			});
+		}
+
+		//切换文章类型
+		$('.classType a').click(function() {
+			var _index = $(this).index();
+			classType = _index+1;
+			listData = null;
+			getArticle(classType);
+			fillData(classType, 1);
+			var length = listData.length;
+			createPage(length);
+		});
+		
+		//查看文章详情
+		$('#listContent').on('click','a',function(){
+			var _href = $(this).attr('data-href');
+			$.ajax({
+				async:false,
+				type:"post",
+				url:"getContent.php",
+				data:{
+					href: _href
+				},
+				success:function(response,xhr){
+					if(response==1){
+						var targetUrl = "articleDetail.php?random="+_href;
+						window.open(targetUrl,"_blank"); 
+					}
+				}
+			});
+		});
+		
+		
+		//爬取新文章
+		$('#newSpider').click(function(){
+			var type = $('.classType a').eq(classType-1).html();
+//			console.log(type);
+			$.ajax({
+				async:true,
+				type:"post",
+				url:"spider.php",
+				data:{
+					type:type
+				},
+				success:function(response,xhr){
+//					console.log(JSON.parse(response));
+					console.log(response);
+				}
+			});
+		});
+	</script>
+
+</html>
