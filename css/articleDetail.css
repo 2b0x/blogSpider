@@ -1,45 +1,76 @@
-.main-left{
-	width: 940px;	
+.main-left {
+	width: 940px;
 }
-.main-right{	
-    position:  absolute;
-    right:  40px;
-    top: 500px;
+
+.main-right {
+	position: absolute;
+	right: 40px;
+	top: 500px;
 }
-#articleContent{
+
+#articleContent {
 	padding: 30px 30px 50px;
 }
-.artical-info{
+
+.artical-info {
 	color: #999;
-    line-height: 1;
-    padding: 0 0 20px;
-    margin-bottom: 30px;
-    border-bottom: 2px dashed #F44336;
+	line-height: 1;
+	padding: 0 0 20px;
+	margin-bottom: 30px;
+	border-bottom: 2px dashed #F44336;
 }
-.artical-info span{
+
+.artical-info span {
 	margin-right: 30px;
 	color: #2196F3;
 }
-.artical-copyright{
+
+.artical-copyright {
 	color: #999;
-    line-height: 1;
-    padding: 20px 0;
-    margin-top: 50px;
-    border-top: 1px dashed #ccc;
-    border-bottom: 1px dashed #ccc;
+	line-height: 1;
+	padding: 20px 0;
+	margin-top: 50px;
+	border-top: 1px dashed #ccc;
+	border-bottom: 1px dashed #ccc;
 }
-.blog-name{
+
+.blog-name {
 	max-width: 700px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+
+/*51CTO*/
+
+.editor-side-new * {
+	font-size: 16px;
+}
+
+.main-content p {
+	margin-bottom: 10px;
+}
+
+.main-content *,
+.main-content img {
+	max-width: 100%;
 }
 
 /*51CTO*/
-.editor-side-new *{
-	font-size: 16px;
+
+
+
+/*cnblog*/
+.cnblogs_code {
+    background-color: #f5f5f5;
+    font-family: Courier New!important;
+    font-size: 12px!important;
+    border: 1px solid #ccc;
+    padding: 5px;
+    overflow: auto;
+    margin: 5px 0;
+    color: #000;
 }
-.main-content p{
-	margin-bottom: 10px;
-}
-/*51CTO*/
+
+/*cnblog*/

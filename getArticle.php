@@ -3,19 +3,19 @@
 	
 	require('conn.php');
 	
-	if(empty($_POST[type])){
+	if(empty($_POST['type'])){
 		$type=1;
 	}else{
-		$type = $_POST[type];
+		$type = $_POST['type'];
 	}
 	
-	if(empty($_POST[page])){
+	if(empty($_POST['page'])){
 		$page=1;
 	}else{
-		$page = $_POST[page];
+		$page = $_POST['page'];
 	}
 	
-	$isSearch = $_POST[isSearch];
+	$isSearch = $_POST['isSearch'];
 	
 	$pageEnd=$page*10;
 	$pageStart=$pageEnd-10;
@@ -23,7 +23,7 @@
 	if($isSearch==0){
 		$sql = "SELECT * FROM article WHERE arttype='" . $type . "' order by id desc";     
 	}else{
-		$keyword = $_POST[keyword];
+		$keyword = $_POST['keyword'];
 		$sql = "SELECT * FROM article WHERE arttype='" . $type . "' AND title LIKE '%" . $keyword . "%' order by id desc";   //mysql查询语句  
 	}
 
@@ -35,11 +35,11 @@
 	$datas = array();
 	$length=count($data);
 	for($i=0;$i<$length;$i++){	
-		$datas[$i][id] = $data[$i][id];
-		$datas[$i][title] = $data[$i][title];
-		$datas[$i][href] = $data[$i][href];
-		$datas[$i][from] = $data[$i][artfrom];
-		$datas[$i][gettime] = $data[$i][gettime];
+		$datas[$i]['id'] = $data[$i]['id'];
+		$datas[$i]['title'] = $data[$i]['title'];
+		$datas[$i]['href'] = $data[$i]['href'];
+		$datas[$i]['from'] = $data[$i]['artfrom'];
+		$datas[$i]['gettime'] = $data[$i]['gettime'];
 	}
 	
 	echo urldecode(json_encode($datas));	

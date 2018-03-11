@@ -1,8 +1,8 @@
 <?php
 include('conn.php');  
 
-$userEmail = $_POST[userEmail];
-$password = $_POST[password];
+$userEmail = $_POST['userEmail'];
+$password = $_POST['password'];
 
 
 //检测用户名及密码是否正确  

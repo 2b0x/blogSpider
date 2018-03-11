@@ -31,13 +31,13 @@
 //	$favoriteClassNum = urldecode(json_encode($favoriteClassNum));
 	
 	$data = array();
-	$data[userName] = $username;
-	$data[userEmail] = $userEmail;
-	$data[userInter] = $focuType;
-	$data[userIntro] = $userintro;
-	$data[userPic] = $userpic;
-	$data[userFavoriteNum] = $favoriteNum;
-	$data[favoriteClassNum] = $favoriteClassNum;
+	$data['userName'] = $username;
+	$data['userEmail'] = $userEmail;
+	$data['userInter'] = $focuType;
+	$data['userIntro'] = $userintro;
+	$data['userPic'] = $userpic;
+	$data['userFavoriteNum'] = $favoriteNum;
+	$data['favoriteClassNum'] = $favoriteClassNum;
 	$datas = urldecode(json_encode($data));
 	echo $datas;
 ?>

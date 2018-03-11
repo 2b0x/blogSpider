@@ -6,7 +6,7 @@
 	$articleId = $_GET['random'];
 
 	//获取文章信息
-	$getArtiSQL = "SELECT * FROM dom2 WHERE id='" . $articleId . "'";   
+	$getArtiSQL = "SELECT * FROM article WHERE id='" . $articleId . "'";   
 	$artiRS = mysql_query($getArtiSQL) or die("查询失败");
 	$artiData = array();
 	while ($row = mysql_fetch_array($artiRS)) {
@@ -34,8 +34,8 @@
 	}
 	$artiTime = $artiData[0]['publishtime'];//获取文章发布时间
 	$artiContent = htmlspecialchars_decode($artiData[0][2]);//获取文章内容
+//	$artiContent = html_entity_decode($artiData[0][2]);//获取文章内容
 	$artiContent = preg_replace("#\s{3,}#", "\n", $artiContent);
-	
 	
 	
 	

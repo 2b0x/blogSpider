@@ -4,21 +4,29 @@
 	require('conn.php');
 	
 	$artId = $_POST['href'];
-	$artSQL = "select * from dom2 where id='" . $artId . "'";
+	$artSQL = "select * from article where id='" . $artId . "'";
 	$artRS = mysql_query($artSQL) or die ("统计失败");	
 	$artData = array(); 
 	while($row = mysql_fetch_array($artRS)){  
 	    $artData[] = $row;  
 	} 
 	
-	if( empty($artData[0][content]) ){
+	if( empty($artData[0]['content']) ){
 //		echo "空";
-		$url = $artData[0][href];
+		$url = $artData[0]['href'];
+		
+		preg_match_all("/(.*?).com/",$url,$datafrom);
+		$targetURL = $datafrom[0][0];
+		
+		if(strstr($targetURL,"cnblogs")){
+			$url = substr_replace($url,'',stripos($url,"s"),1);
+		}
+	
 		$content=getContent($url);
-		$artContent = $content[0][0];
-		$artTime = $content[1];
+		$artContent = $content[0];
 		$test = htmlspecialchars($artContent, ENT_QUOTES);	
-		$getContSQL = "UPDATE dom2 SET content='" . $test . "' where id='" . $artId . "'" ;
+		// $test = html_entity_decode($artContent, ENT_QUOTES);	
+		$getContSQL = "UPDATE article SET content='" . $test . "' where id='" . $artId . "'" ;
 		if (!mysql_query($getContSQL)) {
 			echo mysql_error();
 //			echo "0";
@@ -28,11 +36,10 @@
 	}else{
 		echo "1";
 //		echo "非空";
+		echo $test;
 	}
 	
 	mysql_close();
-	
-	
 	
 	function getData($url){
 		$header[]="User-Agent:Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36";  
@@ -54,11 +61,24 @@
 		$d = getData($u);
 		$ds = str_get_html($d);
 		$res = array(); 
-//	 	$res = $ds->find('div[id=blog_content]');//iteye的规则
-//	 	$res = $ds->find('div[id=cnblogs_post_body]');//博客园的规则
-		$res = $ds->find('div[class=main-content]');//51CTO的规则
-		return $res[0];
+		
+		preg_match_all("/(.*?).com/",$u,$datafrom);
+		$targetURL = $datafrom[0][0];
+		
+		if(strstr($targetURL,"iteye")){
+			// the rule is param for ITEYE
+		    $res = $ds->find('div[id=blog_content]');
+			$from = "ITEYE";
+		}else if(strstr($targetURL,"51cto")){
+			// the rule is param for 51CTO
+	   		$res = $ds->find('div[class=main-content]');
+			$from = "51CTO";
+		}else if(strstr($targetURL,"cnblogs")){
+		    // the rule is param for 博客园
+		    $res = $ds->find('div[id=cnblogs_post_body]');
+			$from = "博客园";
+		}
+		return $res;
 	}
 
-	
 ?>

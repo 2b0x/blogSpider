@@ -7,7 +7,8 @@
 		<link rel="stylesheet" type="text/css" href="css/index.css" />
 		<link rel="stylesheet" type="text/css" href="css/base.css" />
 		<link rel="stylesheet" type="text/css" href="css/articleDetail.css"/>
-		<link rel="stylesheet" type="text/css" href="layui/css/layui.css" />
+		<link rel="stylesheet" href="layui/css/layui.css" />
+		<link rel="stylesheet" href="css/blog-common.css" />
 	</head>
 
 	<body>
@@ -109,6 +110,8 @@
 						alert('收藏成功');
 						$('#addFavorite span').html('取消收藏');
 						$('#addFavorite').attr('id','outFavorite');
+					}else{
+						console.log(response);
 					}
 				}
 			});
