@@ -3,6 +3,7 @@
 ![](https://img.shields.io/badge/language-php-orange.svg) 
 ![](https://img.shields.io/badge/language-JavaScript-green.svg) 
 <br/><br/>
-## Usage 使用
-clone or download the progress in your server,import the sql-file into your database
+>## Usage 使用
+>clone or download the progress in your server,and import the sql-file into your database 
+> <br/>克隆或者下载项目文件到你的服务器目录下，然后将sql文件导入到你的数据库中
 
